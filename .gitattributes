@@ -1,0 +1,13 @@
+# Do not include some development folders into the release builds
+# Directories
+.github export-ignore
+.idea export-ignore
+benchmarks export-ignore
+docs export-ignore
+sandbox export-ignore
+tests export-ignore
+
+# Files
+.editorconfig export-ignore
+phpcs.xml export-ignore
+phpunit.xml export-ignore

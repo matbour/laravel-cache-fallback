@@ -1,0 +1,44 @@
+{
+  "name": "mathieu-bour/laravel-cache-fallback",
+  "description": "Allow Laravel cache connections to fallback to more stable drivers.",
+  "version": "0.1.0-dev",
+  "keywords": [
+    "laravel",
+    "cache",
+    "fallback",
+    "driver"
+  ],
+  "homepage": "https://github.com/mathieu-bour/laravel-cache-fallback",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mathieu Bour",
+      "email": "mathieu.tin.bour@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.2",
+    "illuminate/cache": "^6.0 || ^7.0",
+    "illuminate/config": "^6.0 || ^7.0",
+    "illuminate/support": "^6.0 || ^7.0"
+  },
+  "require-dev": {
+    "laravel/framework": "^7.0",
+    "laravel/lumen-framework": "^7.0",
+    "mathrix-education/coding-standard": "^2.0",
+    "mockery/mockery": "^1.3",
+    "phpunit/phpunit": "^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Windy\\LaravelCacheFallback\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
+}
