@@ -1,0 +1,27 @@
+sandbox: ./hydra
+default: laravel-8.0
+benches:
+  laravel-8.0:
+    framework: laravel
+    constraint: ^8.0
+  laravel-7.0:
+    framework: laravel
+    constraint: ^7.0
+  laravel-6.0:
+    framework: laravel
+    constraint: ^6.0
+  laravel-5.8:
+    framework: laravel
+    constraint: 5.8.*
+  lumen-8.0:
+    framework: lumen
+    constraint: ^8.0
+  lumen-7.0:
+    framework: lumen
+    constraint: ^7.0
+  lumen-6.0:
+    framework: lumen
+    constraint: ^6.0
+  lumen-5.8:
+    framework: lumen
+    constraint: 5.8.*

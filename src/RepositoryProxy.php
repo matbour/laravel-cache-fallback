@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Windy\LaravelCacheFallback;
+namespace Windy\CacheFallback;
 
 use DateInterval;
 use DateTimeInterface;
@@ -23,8 +23,8 @@ use function tap;
  */
 class RepositoryProxy extends CacheRepository
 {
-    private bool              $thrown = false;
-    private CacheManagerProxy $manager;
+    private $thrown = false;
+    private $manager;
 
     public function __construct(Store $store, CacheManagerProxy $manager)
     {
@@ -82,7 +82,7 @@ class RepositoryProxy extends CacheRepository
         try {
             return parent::get($key, $default);
         } catch (Throwable $exception) {
-            return $this->next(__FUNCTION__, func_get_args(), $exception);
+            return $this->next(__FUNCTION__, [$key, $default], $exception);
         }
     }
 
@@ -98,7 +98,7 @@ class RepositoryProxy extends CacheRepository
         try {
             return parent::many($keys);
         } catch (Throwable $exception) {
-            return $this->next(__FUNCTION__, func_get_args(), $exception);
+            return $this->next(__FUNCTION__, [$keys], $exception);
         }
     }
 
@@ -118,7 +118,7 @@ class RepositoryProxy extends CacheRepository
         try {
             return parent::put($key, $value, $ttl);
         } catch (Throwable $exception) {
-            return $this->next(__FUNCTION__, func_get_args(), $exception);
+            return $this->next(__FUNCTION__, [$key, $value, $ttl], $exception);
         }
     }
 
@@ -135,7 +135,7 @@ class RepositoryProxy extends CacheRepository
         try {
             return parent::putMany($values, $ttl);
         } catch (Throwable $exception) {
-            return $this->next(__FUNCTION__, func_get_args(), $exception);
+            return $this->next(__FUNCTION__, [$values, $ttl], $exception);
         }
     }
 
@@ -155,7 +155,7 @@ class RepositoryProxy extends CacheRepository
         try {
             return parent::add($key, $value, $ttl);
         } catch (Throwable $exception) {
-            return $this->next(__FUNCTION__, func_get_args(), $exception);
+            return $this->next(__FUNCTION__, [$key, $value, $ttl], $exception);
         }
     }
 
@@ -174,7 +174,7 @@ class RepositoryProxy extends CacheRepository
         try {
             return parent::increment($key, $value);
         } catch (Throwable $exception) {
-            return $this->next(__FUNCTION__, func_get_args(), $exception);
+            return $this->next(__FUNCTION__, [$key, $value], $exception);
         }
     }
 
@@ -193,7 +193,7 @@ class RepositoryProxy extends CacheRepository
         try {
             return parent::decrement($key, $value);
         } catch (Throwable $exception) {
-            return $this->next(__FUNCTION__, func_get_args(), $exception);
+            return $this->next(__FUNCTION__, [$key, $value], $exception);
         }
     }
 
@@ -212,7 +212,7 @@ class RepositoryProxy extends CacheRepository
         try {
             return parent::forever($key, $value);
         } catch (Throwable $exception) {
-            return $this->next(__FUNCTION__, func_get_args(), $exception);
+            return $this->next(__FUNCTION__, [$key, $value], $exception);
         }
     }
 
@@ -230,7 +230,7 @@ class RepositoryProxy extends CacheRepository
         try {
             return parent::forget($key);
         } catch (Throwable $exception) {
-            return $this->next(__FUNCTION__, func_get_args(), $exception);
+            return $this->next(__FUNCTION__, [$key], $exception);
         }
     }
 
@@ -244,7 +244,7 @@ class RepositoryProxy extends CacheRepository
         try {
             return parent::clear();
         } catch (Throwable $exception) {
-            return $this->next(__FUNCTION__, func_get_args(), $exception);
+            return $this->next(__FUNCTION__, [], $exception);
         }
     }
 
@@ -260,7 +260,7 @@ class RepositoryProxy extends CacheRepository
         try {
             return parent::tags($names);
         } catch (Throwable $exception) {
-            return $this->next(__FUNCTION__, func_get_args(), $exception);
+            return $this->next(__FUNCTION__, [$names], $exception);
         }
     }
 
@@ -273,7 +273,6 @@ class RepositoryProxy extends CacheRepository
      * @return mixed
      *
      * @throws Throwable The bubbled exception.
-     *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function __call($method, $parameters)

@@ -1,0 +1,50 @@
+name: Tests
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '**'
+jobs:
+  tests:
+    name: Test with PHPUnit
+    strategy:
+      matrix:
+        bench:
+          - laravel-5.8
+          - laravel-6.0
+          - laravel-7.0
+          - laravel-8.0
+          - lumen-5.8
+          - lumen-6.0
+          - lumen-7.0
+          - lumen-8.0
+        php: [ '7.1', '7.2', '7.3', '7.4', '8.0' ]
+        exclude:
+          - bench: laravel-7.0
+            php: '7.1'
+          - bench: laravel-8.0
+            php: '7.1'
+          - bench: laravel-8.0
+            php: '7.2'
+          - bench: lumen-7.0
+            php: '7.1'
+          - bench: lumen-8.0
+            php: '7.1'
+          - bench: lumen-8.0
+            php: '7.2'
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ mathrix.php }}
+      - name: Install composer dependencies
+        run: composer install
+      - name: Test with PHPUnit
+        run: vendor/bin/phpunit
+        env:
+          HYDRA_BENCH: ${{ matrix.bench }}

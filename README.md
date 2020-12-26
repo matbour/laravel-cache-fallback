@@ -18,8 +18,8 @@ This package follows the [Semantic Versioning specification](https://semver.org)
 This package was inspired by [fingo/laravel-cache-fallback](https://github.com/fingo/laravel-cache-fallback), even if it is not maintained anymore.
 
 ## Prerequisites
-- PHP >= 7.2
-- Laravel/Lumen 6 or 7
+- PHP >= 7.1.3
+- Laravel/Lumen 5.8, 6.x, 7.x or 8.x
 
 ## Installation
 Simply add mathieu-bour/laravel-cache-fallback to your package dependencies.
@@ -38,7 +38,7 @@ If you have disabled this feature, you can register the service provider in the 
 Register the service provider in the `bootstrap/app.php` file like so:
 
 ```php
-$app->register(Windy\LaravelCacheFallback\CacheFallbackServiceProvider::class);
+$app->register(Windy\CacheFallback\CacheFallbackServiceProvider::class);
 ```
 
 ## Usage

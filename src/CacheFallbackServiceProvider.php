@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Windy\LaravelCacheFallback;
+namespace Windy\CacheFallback;
 
 use Illuminate\Support\ServiceProvider;
 

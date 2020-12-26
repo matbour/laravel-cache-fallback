@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- PHP_CodeSniffer global configuration file -->
+<ruleset
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd"
+>
+  <!-- Arguments -->
+  <arg value="p"/>
+  <arg name="basepath" value="."/>
+  <arg name="no-cache"/>
+  <arg name="colors"/>
+  <arg name="severity" value="1"/>
+  <arg name="error-severity" value="1"/>
+  <arg name="warning-severity" value="1"/>
+
+  <!-- Inclusions -->
+  <file>src</file>
+  <file>tests</file>
+
+  <!-- Run against the PHPCompatibility ruleset -->
+  <rule ref="PHPCompatibility"/>
+  <config name="testVersion" value="7.1-"/>
+
+  <rule ref="Windy">
+    <!-- PHP 7.1 compatibility -->
+    <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint"/>
+  </rule>
+</ruleset>
