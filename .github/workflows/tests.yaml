@@ -23,12 +23,16 @@ jobs:
           - lumen-8.0
         php: [ '7.1', '7.2', '7.3', '7.4', '8.0' ]
         exclude:
+          - bench: laravel-5.8
+            php: '8.0'
           - bench: laravel-7.0
             php: '7.1'
           - bench: laravel-8.0
             php: '7.1'
           - bench: laravel-8.0
             php: '7.2'
+          - bench: lumen-5.8
+            php: '8.0'
           - bench: lumen-7.0
             php: '7.1'
           - bench: lumen-8.0
