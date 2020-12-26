@@ -44,6 +44,8 @@ jobs:
           php-version: ${{ mathrix.php }}
       - name: Install composer dependencies
         run: composer install
+      - name: Install Hydra bench
+        run: vendor/bin/hydra install --only=${{ matrix.bench }}
       - name: Test with PHPUnit
         run: vendor/bin/phpunit
         env:
