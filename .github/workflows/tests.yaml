@@ -41,7 +41,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ mathrix.php }}
+          php-version: ${{ matrix.php }}
       - name: Install composer dependencies
         run: composer install
       - name: Install Hydra bench
