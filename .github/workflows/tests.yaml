@@ -14,7 +14,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
+          php-version: '8.0'
       - name: Install composer dependencies
         run: composer install
       - name: Lint with PHP_CodeSniffer
@@ -75,7 +75,7 @@ jobs:
       - name: Install composer dependencies
         run: composer install
       - name: Install Hydra bench
-        run: vendor/bin/hydra install --only=${{ matrix.bench }}
+        run: vendor/bin/hydra install --only=${{ matrix.bench }} -v
       - name: Test with PHPUnit
         run: |
           mkdir coverage
