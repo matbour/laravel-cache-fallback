@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         bootstrap="hydra/bootstrap.php">
+<phpunit
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+  bootstrap="hydra/bootstrap.php">
   <testsuites>
     <testsuite name="Integration Test Suite">
       <directory>./tests/Integration</directory>
     </testsuite>
   </testsuites>
+
+  <coverage processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
+  </coverage>
+
   <php>
     <env name="APP_ENV" value="testing"/>
+
+    <!-- Coverage -->
+    <ini name="error_reporting" value="-1"/>
+    <ini name="xdebug.mode" value="coverage"/>
+    <env name="XDEBUG_MODE" value="coverage"/>
   </php>
 </phpunit>

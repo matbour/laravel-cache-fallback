@@ -21,6 +21,10 @@ This package was inspired by [fingo/laravel-cache-fallback](https://github.com/f
 - PHP >= 7.1.3
 - Laravel/Lumen 5.8, 6.x, 7.x or 8.x
 
+## Supported cache methods
+This package support most of the cache methods (e.g. get, put, etc.).
+**The tagged cache is not supported at the moment.**
+
 ## Installation
 Simply add mathieu-bour/laravel-cache-fallback to your package dependencies.
 

@@ -1,12 +1,24 @@
 name: Tests
 on:
   push:
-    branches:
-      - main
+    branches: [ '**' ]
   pull_request:
-    branches:
-      - '**'
+    branches: [ '**' ]
 jobs:
+  lint:
+    name: Lint with PHP_CodeSniffer
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+      - name: Install composer dependencies
+        run: composer install
+      - name: Lint with PHP_CodeSniffer
+        run: vendor/bin/phpcs
   tests:
     name: Test with PHPUnit
     strategy:
@@ -59,11 +71,20 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
+          coverage: pcov
       - name: Install composer dependencies
         run: composer install
       - name: Install Hydra bench
         run: vendor/bin/hydra install --only=${{ matrix.bench }}
       - name: Test with PHPUnit
-        run: vendor/bin/phpunit
+        run: |
+          mkdir coverage
+          vendor/bin/phpunit --testdox --coverage-text --coverage-clover=coverage/coverage.xml
         env:
           HYDRA_BENCH: ${{ matrix.bench }}
+      - uses: codecov/codecov-action@v1
+        if: matrix.bench == 'laravel-8.0' && matrix.php == '8.0'
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/coverage.xml
+          verbose: true

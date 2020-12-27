@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpMissingParamTypeInspection */
 
 declare(strict_types=1);
 
@@ -7,7 +8,6 @@ namespace Windy\CacheFallback;
 use DateInterval;
 use DateTimeInterface;
 use Illuminate\Cache\Repository as CacheRepository;
-use Illuminate\Cache\TaggedCache;
 use Illuminate\Config\Repository as ConfigRepository;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Cache\Store;
@@ -61,9 +61,11 @@ class RepositoryProxy extends CacheRepository
 
         $fallback = $config->get("cache.stores.{$name}.fallback");
 
+        // @codeCoverageIgnoreStart
         return tap($this->manager->store($fallback)->$method(...$arguments), function (): void {
             $this->thrown = false;
         });
+        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -248,22 +250,6 @@ class RepositoryProxy extends CacheRepository
     }
 
     /**
-     * @param string|string[] $names The tags names.
-     *
-     * @return TaggedCache The tagged cache instance.
-     *
-     * @throws Throwable The bubbled exception.
-     */
-    public function tags($names): TaggedCache
-    {
-        try {
-            return parent::tags($names);
-        } catch (Throwable $exception) {
-            return $this->next(__FUNCTION__, [$names], $exception);
-        }
-    }
-
-    /**
      * Forward a the calls to the underlying cache store instance.
      *
      * @param string  $method     The method name.
@@ -274,6 +260,7 @@ class RepositoryProxy extends CacheRepository
      * @throws Throwable The bubbled exception.
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     * @codeCoverageIgnore
      */
     public function __call($method, $parameters)
     {
