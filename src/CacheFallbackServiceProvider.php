@@ -18,8 +18,8 @@ class CacheFallbackServiceProvider extends ServiceProvider
             return new CacheManagerProxy($this->app);
         });
 
-        $this->app->extend('cache.store', static function ($app) {
-            return $app['cache']->driver();
+        $this->app->extend('cache.store', function () {
+            return $this->app['cache']->driver();
         });
     }
 }
