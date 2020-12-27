@@ -16,6 +16,7 @@ abstract class IntegrationTestCase extends HydraTestCase
 {
     protected function setUpLumen(): void
     {
+        $this->app->withFacades();
         // We need to set path.storage since the laravel helpers will be used.
         $this->app->instance('path.storage', $this->app->basePath('storage'));
     }
