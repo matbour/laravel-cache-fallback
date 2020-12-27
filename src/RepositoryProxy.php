@@ -12,7 +12,6 @@ use Illuminate\Config\Repository as ConfigRepository;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Cache\Store;
 use Throwable;
-use function func_get_args;
 use function tap;
 
 /**
@@ -273,6 +272,7 @@ class RepositoryProxy extends CacheRepository
      * @return mixed
      *
      * @throws Throwable The bubbled exception.
+     *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function __call($method, $parameters)

@@ -10,6 +10,9 @@ use function storage_path;
 
 class CacheFallbackTestCase extends HydraTestCase
 {
+    /**
+     * @return array[] The package configuration.
+     */
     public function setUpConfig(): array
     {
         return [
@@ -31,6 +34,9 @@ class CacheFallbackTestCase extends HydraTestCase
         ];
     }
 
+    /**
+     * @return string[] The package providers.
+     */
     public function setUpProviders(): array
     {
         return [

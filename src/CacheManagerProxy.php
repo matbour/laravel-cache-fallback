@@ -7,8 +7,8 @@ namespace Windy\CacheFallback;
 use Closure;
 use Illuminate\Cache\CacheManager;
 use Illuminate\Contracts\Cache\Store;
+use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use function array_search;
-use function tap;
 
 /**
  * From {@see \Illuminate\Contracts\Cache\Repository} and {@see \Psr\SimpleCache\CacheInterface}:
@@ -57,8 +57,12 @@ class CacheManagerProxy extends CacheManager
      */
     public function repository(Store $store): RepositoryProxy
     {
-        return tap(new RepositoryProxy($store, $this), function ($repository): void {
-            $this->setEventDispatcher($repository);
-        });
+        $repository = new RepositoryProxy($store, $this);
+
+        if ($this->app->bound(DispatcherContract::class)) {
+            $repository->setEventDispatcher($this->app[DispatcherContract::class]);
+        }
+
+        return $repository;
     }
 }
