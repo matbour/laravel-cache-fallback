@@ -77,6 +77,12 @@ jobs:
       - name: Install Hydra bench
         run: vendor/bin/hydra install --only=${{ matrix.bench }} -v
       - name: Test with PHPUnit
+        if: matrix.bench != 'laravel-8.0' && matrix.php != '8.0'
+        run: vendor/bin/phpunit
+        env:
+          HYDRA_BENCH: ${{ matrix.bench }}
+      - name: Test with PHPUnit with coverage
+        if: matrix.bench == 'laravel-8.0' && matrix.php == '8.0'
         run: |
           mkdir coverage
           vendor/bin/phpunit --testdox --coverage-text --coverage-clover=coverage/coverage.xml
