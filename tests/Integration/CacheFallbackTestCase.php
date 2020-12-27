@@ -9,6 +9,12 @@ use Windy\Hydra\Testing\HydraTestCase;
 
 class CacheFallbackTestCase extends HydraTestCase
 {
+    protected function setUpLumen(): void
+    {
+        $this->app->withFacades();
+        $this->app->instance('path.storage', $this->app->basePath('storage'));
+    }
+
     /**
      * @return mixed[] The package configuration.
      */
@@ -18,12 +24,12 @@ class CacheFallbackTestCase extends HydraTestCase
             'cache' => [
                 'default' => 'redis',
                 'stores'  => [
-                    'file'    => [
-                        'driver'   => 'file',
-                        'path'     => $this->app->basePath('storage/framework/cache/data'),
+                    'file'  => [
+                        'driver' => 'file',
+                        'path'   => $this->app->basePath('storage/framework/cache/data'),
                     ],
                     // There is not Redis instance running so the cache will fail
-                    'redis'   => [
+                    'redis' => [
                         'driver'     => 'redis',
                         'connection' => 'default',
                         'fallback'   => 'file',
