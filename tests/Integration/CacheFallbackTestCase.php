@@ -6,12 +6,11 @@ namespace Windy\CacheFallback\Tests\Integration;
 
 use Windy\CacheFallback\CacheFallbackServiceProvider;
 use Windy\Hydra\Testing\HydraTestCase;
-use function storage_path;
 
 class CacheFallbackTestCase extends HydraTestCase
 {
     /**
-     * @return array[] The package configuration.
+     * @return mixed[] The package configuration.
      */
     public function setUpConfig(): array
     {
@@ -21,7 +20,7 @@ class CacheFallbackTestCase extends HydraTestCase
                 'stores'  => [
                     'file'    => [
                         'driver'   => 'file',
-                        'path'     => storage_path('framework/cache/data'),
+                        'path'     => $this->app->basePath('storage/framework/cache/data'),
                     ],
                     // There is not Redis instance running so the cache will fail
                     'redis'   => [
