@@ -25,6 +25,8 @@ jobs:
         exclude:
           - bench: laravel-5.8
             php: '8.0'
+          - bench: laravel-6.0
+            php: '7.1'
           - bench: laravel-7.0
             php: '7.1'
           - bench: laravel-8.0
@@ -33,6 +35,8 @@ jobs:
             php: '7.2'
           - bench: lumen-5.8
             php: '8.0'
+          - bench: lumen-6.0
+            php: '7.1'
           - bench: lumen-7.0
             php: '7.1'
           - bench: lumen-8.0
