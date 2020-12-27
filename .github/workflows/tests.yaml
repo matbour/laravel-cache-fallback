@@ -77,7 +77,7 @@ jobs:
       - name: Install Hydra bench
         run: vendor/bin/hydra install --only=${{ matrix.bench }} -v
       - name: Test with PHPUnit
-        if: matrix.bench != 'laravel-8.0' && matrix.php != '8.0'
+        if: matrix.bench != 'laravel-8.0' || matrix.php != '8.0'
         run: vendor/bin/phpunit
         env:
           HYDRA_BENCH: ${{ matrix.bench }}
