@@ -2,12 +2,11 @@
 # Directories
 .github export-ignore
 .idea export-ignore
-benchmarks export-ignore
-docs export-ignore
-sandbox export-ignore
 tests export-ignore
 
 # Files
 .editorconfig export-ignore
+.standard-commitrc.json export-ignore
+hydra.yaml export-ignore
 phpcs.xml export-ignore
 phpunit.xml export-ignore

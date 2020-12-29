@@ -25,14 +25,26 @@ This package was inspired by [fingo/laravel-cache-fallback](https://github.com/f
 This package support most of the cache methods (e.g. get, put, etc.).
 **The tagged cache is not supported at the moment.**
 
+### Compatibility Matrix
+
+This package was tested against the following matrix:
+
+| Laravel/Lumen | PHP 7.1            | PHP 7.2            | PHP 7.3            | PHP 7.4            | PHP 8.0            |
+|---------------|--------------------|--------------------|--------------------|--------------------|--------------------|
+| 5.8           | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                |
+| 6.0           | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                |
+| 7.0           | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                |
+| 8.0           | :x:                | :x:                | :heavy_check_mark: | :heavy_check_mark: | :x:                |
+
+
 ## Installation
-Simply add mathieu-bour/laravel-cache-fallback to your package dependencies.
+Simply add `mathieu-bour/laravel-cache-fallback` to your package dependencies.
 
 ```bash
 composer require mathieu-bour/laravel-cache-fallback
 ```
 
-This package does not publish any resource and its configuration directly handled in the `confi/cache.php` file.
+This package does not publish any resource and its configuration directly handled in the `config/cache.php` file.
 
 ### Laravel
 This package uses [Laravel Package Discovery](https://laravel.com/docs/7.x/packages#package-discovery), so you do need to do anything more.
