@@ -34,7 +34,7 @@ This package was tested against the following matrix:
 | 5.8           | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                |
 | 6.0           | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                |
 | 7.0           | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                |
-| 8.0           | :x:                | :x:                | :heavy_check_mark: | :heavy_check_mark: | :x:                |
+| 8.0           | :x:                | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 
 
 ## Installation
