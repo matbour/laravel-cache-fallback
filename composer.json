@@ -23,6 +23,7 @@
     "illuminate/support": "5.8.* || ^6.0 || ^7.0 || ^8.0"
   },
   "require-dev": {
+    "illuminate/redis": "5.8.* || ^6.0 || ^7.0 || ^8.0",
     "laravel/framework": "5.8.* || ^6.0 || ^7.0 || ^8.0",
     "laravel/lumen-framework": "5.8.* || ^6.0 || ^7.0 || ^8.0",
     "mathieu-bour/hydra": "^0.1",

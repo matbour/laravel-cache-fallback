@@ -6,6 +6,7 @@ namespace Windy\CacheFallback\Tests\Integration;
 
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Redis\RedisServiceProvider;
 use Windy\CacheFallback\CacheFallbackServiceProvider;
 use Windy\Hydra\Testing\HydraTestCase;
 
@@ -19,6 +20,12 @@ abstract class IntegrationTestCase extends HydraTestCase
         $this->app->withFacades();
         // We need to set path.storage since the laravel helpers will be used.
         $this->app->instance('path.storage', $this->app->basePath('storage'));
+
+        // We need to load cache to prevent our custom config to be overridden
+        $this->app->configure('cache');
+
+        // Since we use Redis as "failing" cache, we need to import Redis into Lumen
+        $this->app->register(RedisServiceProvider::class);
     }
 
     /**
